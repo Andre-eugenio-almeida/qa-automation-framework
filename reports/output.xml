@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.13.5 on win32)" generated="2026-05-15T15:04:59.184937" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\repositorio\qa-automation-framework\tests">
+<suite id="s1-s1" name="Api" source="C:\repositorio\qa-automation-framework\tests\api">
+<suite id="s1-s1-s1" name="Create User Api" source="C:\repositorio\qa-automation-framework\tests\api\create_user_api.robot">
+<test id="s1-s1-s1-t1" name="Create User API" line="6">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-05-15T15:04:59.446589" level="INFO">Creating Session using : alias=api, url=https://jsonplaceholder.typicode.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>https://jsonplaceholder.typicode.com</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-05-15T15:04:59.446327" elapsed="0.000573"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-05-15T15:04:59.448359" level="INFO">${body} = {'name': 'Andre', 'username': 'qaautomation'}</msg>
+<var>${body}</var>
+<arg>name=Andre</arg>
+<arg>username=qaautomation</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-05-15T15:04:59.447384" elapsed="0.001048"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-05-15T15:04:59.647604" level="INFO">POST Request : url=https://jsonplaceholder.typicode.com/users 
+ path_url=/users 
+ headers={'User-Agent': 'python-requests/2.34.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '45', 'Content-Type': 'application/json'} 
+ body=b'{"name": "Andre", "username": "qaautomation"}' 
+ </msg>
+<msg time="2026-05-15T15:04:59.647811" level="INFO">POST Response : url=https://jsonplaceholder.typicode.com/users 
+ status=201, reason=Created 
+ headers={'Date': 'Fri, 15 May 2026 18:04:59 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '63', 'Connection': 'keep-alive', 'access-control-allow-credentials': 'true', 'access-control-expose-headers': 'Location', 'Cache-Control': 'no-cache', 'etag': 'W/"3f-DlV+EYvKDKFKhRoGsp3D6O39sPA"', 'expires': '-1', 'location': 'https://jsonplaceholder.typicode.com/users/11', 'nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'pragma': 'no-cache', 'report-to': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=EmJfo1O%2BUILeRJDxEAzZTO795TqAe5pxGXBpwo%2F9kW0%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1778868299"}],"max_age":3600}', 'reporting-endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=EmJfo1O%2BUILeRJDxEAzZTO795TqAe5pxGXBpwo%2F9kW0%3D&amp;sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&amp;ts=1778868299"', 'Server': 'cloudflare', 'vary': 'Origin, X-HTTP-Method-Override, Accept-Encoding', 'via': '2.0 heroku-router', 'x-content-type-options': 'nosniff', 'x-powered-by': 'Express', 'x-ratelimit-limit': '1000', 'x-ratelimit-remaining': '999', 'x-ratelimit-reset': '1778868341', 'cf-cache-status': 'DYNAMIC', 'CF-RAY': '9fc411782ceda6ba-GRU', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body={
+  "name": "Andre",
+  "username": "qaautomation",
+  "id": 11
+} 
+ </msg>
+<msg time="2026-05-15T15:04:59.647933" level="INFO">C:\repositorio\qa-automation-framework\venv\Lib\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'jsonplaceholder.typicode.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-05-15T15:04:59.648353" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>url=/users</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-05-15T15:04:59.448826" elapsed="0.199609"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-05-15T15:04:59.650334" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-05-15T15:04:59.648929" elapsed="0.001555"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response.text}</arg>
+<arg>Andre</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-05-15T15:04:59.650967" elapsed="0.001401"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:04:59.444700" elapsed="0.208174"/>
+</test>
+<status status="PASS" start="2026-05-15T15:04:59.243636" elapsed="0.410631"/>
+</suite>
+<suite id="s1-s1-s2" name="Users Api" source="C:\repositorio\qa-automation-framework\tests\api\users_api.robot">
+<test id="s1-s1-s2-t1" name="Get Users API" line="5">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-05-15T15:04:59.663051" level="INFO">Creating Session using : alias=api, url=https://jsonplaceholder.typicode.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>https://jsonplaceholder.typicode.com</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-05-15T15:04:59.662718" elapsed="0.000650"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-05-15T15:04:59.767065" level="INFO">GET Request : url=https://jsonplaceholder.typicode.com/users 
+ path_url=/users 
+ headers={'User-Agent': 'python-requests/2.34.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-05-15T15:04:59.767238" level="INFO">GET Response : url=https://jsonplaceholder.typicode.com/users 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 15 May 2026 18:04:59 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '1847', 'Connection': 'keep-alive', 'access-control-allow-credentials': 'true', 'Cache-Control': 'max-age=43200', 'Content-Encoding': 'gzip', 'etag': 'W/"160d-1eMSsxeJRfnVLRBmYJSbCiJZ1qQ"', 'expires': '-1', 'nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'pragma': 'no-cache', 'report-to': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=ZOS2MZ7QdjjCNMs6IgUkTxwOToOBmOARekki645IovQ%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1759506480"}],"max_age":3600}', 'reporting-endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=ZOS2MZ7QdjjCNMs6IgUkTxwOToOBmOARekki645IovQ%3D&amp;sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&amp;ts=1759506480"', 'Server': 'cloudflare', 'vary': 'Origin, Accept-Encoding', 'via': '2.0 heroku-router', 'x-content-type-options': 'nosniff', 'x-powered-by': 'Express', 'x-ratelimit-limit': '1000', 'x-ratelimit-remaining': '999', 'x-ratelimit-reset': '1759506484', 'Age': '1814', 'Accept-Ranges': 'bytes', 'cf-cache-status': 'HIT', 'CF-RAY': '9fc411799e9f0162-GRU', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=[
+  {
+    "id": 1,
+    "name": "Leanne Graham",
+    "username": "Bret",
+    "email": "Sincere@april.biz",
+    "address": {
+      "street": "Kulas Light",
+      "suite": "Apt. 556",
+      "city": "Gwenborough",
+      "zipcode": "92998-3874",
+      "geo": {
+        "lat": "-37.3159",
+        "lng": "81.1496"
+      }
+    },
+    "phone": "1-770-736-8031 x56442",
+    "website": "hildegard.org",
+    "company": {
+      "name": "Romaguera-Crona",
+      "catchPhrase": "Multi-layered client-server neural-net",
+      "bs": "harness real-time e-markets"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Ervin Howell",
+    "username": "Antonette",
+    "email": "Shanna@melissa.tv",
+    "address": {
+      "street": "Victor Plains",
+      "suite": "Suite 879",
+      "city": "Wisokyburgh",
+      "zipcode": "90566-7771",
+      "geo": {
+        "lat": "-43.9509",
+        "lng": "-34.4618"
+      }
+    },
+    "phone": "010-692-6593 x09125",
+    "website": "anastasia.net",
+    "company": {
+      "name": "Deckow-Crist",
+      "catchPhrase": "Proactive didactic contingency",
+      "bs": "synergize scalable supply-chains"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Clementine Bauch",
+    "username": "Samantha",
+    "email": "Nathan@yesenia.net",
+    "address": {
+      "street": "Douglas Extension",
+      "suite": "Suite 847",
+      "city": "McKenziehaven",
+      "zipcode": "59590-4157",
+      "geo": {
+        "lat": "-68.6102",
+        "lng": "-47.0653"
+      }
+    },
+    "phone": "1-463-123-4447",
+    "website": "ramiro.info",
+    "company": {
+      "name": "Romaguera-Jacobson",
+      "catchPhrase": "Face to face bifurcated interface",
+      "bs": "e-enable strategic applications"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Patricia Lebsack",
+    "username": "Karianne",
+    "email": "Julianne.OConner@kory.org",
+    "address": {
+      "street": "Hoeger Mall",
+      "suite": "Apt. 692",
+      "city": "South Elvis",
+      "zipcode": "53919-4257",
+      "geo": {
+        "lat": "29.4572",
+        "lng": "-164.2990"
+      }
+    },
+    "phone": "493-170-9623 x156",
+    "website": "kale.biz",
+    "company": {
+      "name": "Robel-Corkery",
+      "catchPhrase": "Multi-tiered zero tolerance productivity",
+      "bs": "transition cutting-edge web services"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Chelsey Dietrich",
+    "username": "Kamren",
+    "email": "Lucio_Hettinger@annie.ca",
+    "address": {
+      "street": "Skiles Walks",
+      "suite": "Suite 351",
+      "city": "Roscoeview",
+      "zipcode": "33263",
+      "geo": {
+        "lat": "-31.8129",
+        "lng": "62.5342"
+      }
+    },
+    "phone": "(254)954-1289",
+    "website": "demarco.info",
+    "company": {
+      "name": "Keebler LLC",
+      "catchPhrase": "User-centric fault-tolerant solution",
+      "bs": "revolutionize end-to-end systems"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Mrs. Dennis Schulist",
+    "username": "Leopoldo_Corkery",
+    "email": "Karley_Dach@jasper.info",
+    "address": {
+      "street": "Norberto Crossing",
+      "suite": "Apt. 950",
+      "city": "South Christy",
+      "zipcode": "23505-1337",
+      "geo": {
+        "lat": "-71.4197",
+        "lng": "71.7478"
+      }
+    },
+    "phone": "1-477-935-8478 x6430",
+    "website": "ola.org",
+    "company": {
+      "name": "Considine-Lockman",
+      "catchPhrase": "Synchronised bottom-line interface",
+      "bs": "e-enable innovative applications"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Kurtis Weissnat",
+    "username": "Elwyn.Skiles",
+    "email": "Telly.Hoeger@billy.biz",
+    "address": {
+      "street": "Rex Trail",
+      "suite": "Suite 280",
+      "city": "Howemouth",
+      "zipcode": "58804-1099",
+      "geo": {
+        "lat": "24.8918",
+        "lng": "21.8984"
+      }
+    },
+    "phone": "210.067.6132",
+    "website": "elvis.io",
+    "company": {
+      "name": "Johns Group",
+      "catchPhrase": "Configurable multimedia task-force",
+      "bs": "generate enterprise e-tailers"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Nicholas Runolfsdottir V",
+    "username": "Maxime_Nienow",
+    "email": "Sherwood@rosamond.me",
+    "address": {
+      "street": "Ellsworth Summit",
+      "suite": "Suite 729",
+      "city": "Aliyaview",
+      "zipcode": "45169",
+      "geo": {
+        "lat": "-14.3990",
+        "lng": "-120.7677"
+      }
+    },
+    "phone": "586.493.6943 x140",
+    "website": "jacynthe.com",
+    "company": {
+      "name": "Abernathy Group",
+      "catchPhrase": "Implemented secondary concept",
+      "bs": "e-enable extensible e-tailers"
+    }
+  },
+  {
+    "id": 9,
+    "name": "Glenna Reichert",
+    "username": "Delphine",
+    "email": "Chaim_McDermott@dana.io",
+    "address": {
+      "street": "Dayna Park",
+      "suite": "Suite 449",
+      "city": "Bartholomebury",
+      "zipcode": "76495-3109",
+      "geo": {
+        "lat": "24.6463",
+        "lng": "-168.8889"
+      }
+    },
+    "phone": "(775)976-6794 x41206",
+    "website": "conrad.com",
+    "company": {
+      "name": "Yost and Sons",
+      "catchPhrase": "Switchable contextually-based project",
+      "bs": "aggregate real-time technologies"
+    }
+  },
+  {
+    "id": 10,
+    "name": "Clementina DuBuque",
+    "username": "Moriah.Stanton",
+    "email": "Rey.Padberg@karina.biz",
+    "address": {
+      "street": "Kattie Turnpike",
+      "suite": "Suite 198",
+      "city": "Lebsackbury",
+      "zipcode": "31428-2261",
+      "geo": {
+        "lat": "-38.2386",
+        "lng": "57.2232"
+      }
+    },
+    "phone": "024-648-3804",
+    "website": "ambrose.net",
+    "company": {
+      "name": "Hoeger LLC",
+      "catchPhrase": "Centralized empowering task-force",
+      "bs": "target end-to-end models"
+    }
+  }
+] 
+ </msg>
+<msg time="2026-05-15T15:04:59.767657" level="INFO">C:\repositorio\qa-automation-framework\venv\Lib\site-packages\urllib3\connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'jsonplaceholder.typicode.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-05-15T15:04:59.767994" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>url=/users</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-05-15T15:04:59.663863" elapsed="0.104211"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-05-15T15:04:59.769988" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-05-15T15:04:59.768533" elapsed="0.001615"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:04:59.660997" elapsed="0.109615"/>
+</test>
+<status status="PASS" start="2026-05-15T15:04:59.656109" elapsed="0.115393"/>
+</suite>
+<status status="PASS" start="2026-05-15T15:04:59.241431" elapsed="0.532213"/>
+</suite>
+<suite id="s1-s2" name="Checkout Test" source="C:\repositorio\qa-automation-framework\tests\checkout_test.robot">
+<test id="s1-s2-t1" name="Complete Purchase Flow" line="5">
+<kw name="Complete Checkout Flow" owner="checkout_keywords">
+<kw name="Open Login Page" owner="login_page">
+<kw name="New Browser" owner="Browser">
+<msg time="2026-05-15T15:05:00.241085" level="INFO">{"browser": "chromium", "headless": false, "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "C:\\repositorio\\qa-automation-framework\\reports\\browser\\traces\\temp\\22c9329c-1ce4-4363-812c-339a7fd07377"}</msg>
+<msg time="2026-05-15T15:05:00.270878" level="INFO">Starting Browser process C:\repositorio\qa-automation-framework\venv\Lib\site-packages\Browser\wrapper\index.js using at 127.0.0.1:49654</msg>
+<msg time="2026-05-15T15:05:02.378110" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"C:\\repositorio\\qa-automation-framework\\reports\\browser\\traces\\temp\\22c9329c-1ce4-4363-812c-339a7fd07377"}</msg>
+<arg>chromium</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2026-05-15T15:05:00.239381" elapsed="2.139780"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2026-05-15T15:05:03.542333" level="INFO">Successfully initialized new page object and opened url: https://www.saucedemo.com</msg>
+<msg time="2026-05-15T15:05:03.542503" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>https://www.saucedemo.com</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2026-05-15T15:05:02.379969" elapsed="1.163075"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:00.238285" elapsed="3.305105"/>
+</kw>
+<kw name="Fill Login" owner="login_page">
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-05-15T15:05:03.545406" level="INFO">Fills the text 'standard_user' in the given field.</msg>
+<arg>id=user-name</arg>
+<arg>${user}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:03.544556" elapsed="0.116871"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-05-15T15:05:03.662815" level="INFO">Fills the text 'secret_sauce' in the given field.</msg>
+<arg>id=password</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:03.661772" elapsed="0.041048"/>
+</kw>
+<arg>standard_user</arg>
+<arg>secret_sauce</arg>
+<status status="PASS" start="2026-05-15T15:05:03.543819" elapsed="0.159476"/>
+</kw>
+<kw name="Click Login" owner="login_page">
+<kw name="Click" owner="Browser">
+<msg time="2026-05-15T15:05:03.710954" level="INFO">Clicks the element 'id=login-button'.</msg>
+<arg>id=login-button</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:03.709692" elapsed="0.149697"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser">
+<msg time="2026-05-15T15:05:04.195937" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-1.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-1.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<arg>fullPage=True</arg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2026-05-15T15:05:03.859822" elapsed="0.336403"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:03.706067" elapsed="0.490329"/>
+</kw>
+<kw name="Add Product To Cart" owner="checkout_page">
+<kw name="Click" owner="Browser">
+<msg time="2026-05-15T15:05:04.199021" level="INFO">Clicks the element 'id=add-to-cart-sauce-labs-backpack'.</msg>
+<arg>id=add-to-cart-sauce-labs-backpack</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:04.197485" elapsed="0.054896"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:04.196742" elapsed="0.056345"/>
+</kw>
+<kw name="Open Cart" owner="checkout_page">
+<kw name="Click" owner="Browser">
+<msg time="2026-05-15T15:05:04.259209" level="INFO">Clicks the element '.shopping_cart_link'.</msg>
+<arg>.shopping_cart_link</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:04.256791" elapsed="0.080811"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:04.254755" elapsed="0.083510"/>
+</kw>
+<kw name="Go To Checkout" owner="checkout_page">
+<kw name="Click" owner="Browser">
+<msg time="2026-05-15T15:05:04.340847" level="INFO">Clicks the element 'id=checkout'.</msg>
+<arg>id=checkout</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:04.339751" elapsed="0.067061"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:04.338777" elapsed="0.068340"/>
+</kw>
+<kw name="Fill Checkout Information" owner="checkout_page">
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-05-15T15:05:04.409664" level="INFO">Fills the text 'Andre' in the given field.</msg>
+<arg>id=first-name</arg>
+<arg>Andre</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:04.408578" elapsed="0.036569"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-05-15T15:05:04.457925" level="INFO">Fills the text 'QA' in the given field.</msg>
+<arg>id=last-name</arg>
+<arg>QA</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:04.447394" elapsed="0.034203"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-05-15T15:05:04.483466" level="INFO">Fills the text '12345' in the given field.</msg>
+<arg>id=postal-code</arg>
+<arg>12345</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:04.482407" elapsed="0.030472"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:04.407606" elapsed="0.105663"/>
+</kw>
+<kw name="Continue Checkout" owner="checkout_page">
+<kw name="Click" owner="Browser">
+<msg time="2026-05-15T15:05:04.516194" level="INFO">Clicks the element 'id=continue'.</msg>
+<arg>id=continue</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:04.514979" elapsed="0.065651"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:04.513801" elapsed="0.067064"/>
+</kw>
+<kw name="Finish Checkout" owner="checkout_page">
+<kw name="Click" owner="Browser">
+<msg time="2026-05-15T15:05:04.582763" level="INFO">Clicks the element 'id=finish'.</msg>
+<arg>id=finish</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:04.581849" elapsed="0.080801"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:04.581153" elapsed="0.081762"/>
+</kw>
+<kw name="Validate Checkout Success" owner="checkout_page">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-05-15T15:05:04.680747" level="INFO">Waited for Element with selector text=Thank you for your order! at state visible</msg>
+<arg>text=Thank you for your order!</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-05-15T15:05:04.663853" elapsed="0.017178"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:04.663215" elapsed="0.018032"/>
+</kw>
+<kw name="Close Browser" owner="Browser">
+<msg time="2026-05-15T15:05:04.986680" level="INFO">Closed browser</msg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-05-15T15:05:04.681485" elapsed="0.305584"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:00.237470" elapsed="4.749906"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:00.236106" elapsed="4.751969"/>
+</test>
+<status status="PASS" start="2026-05-15T15:04:59.775066" elapsed="5.231370"/>
+</suite>
+<suite id="s1-s3" name="Login Test" source="C:\repositorio\qa-automation-framework\tests\login_test.robot">
+<test id="s1-s3-t1" name="Valid Login" line="5">
+<kw name="Login With Valid User" owner="login_keywords">
+<kw name="Open Login Page" owner="login_page">
+<kw name="New Browser" owner="Browser">
+<msg time="2026-05-15T15:05:05.059825" level="INFO">{"browser": "chromium", "headless": false, "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "C:\\repositorio\\qa-automation-framework\\reports\\browser\\traces\\temp\\d2854647-4e7c-4ef0-ab5f-89b7e60337bf"}</msg>
+<msg time="2026-05-15T15:05:05.802140" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"C:\\repositorio\\qa-automation-framework\\reports\\browser\\traces\\temp\\d2854647-4e7c-4ef0-ab5f-89b7e60337bf"}</msg>
+<arg>chromium</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2026-05-15T15:05:05.058150" elapsed="0.744392"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2026-05-15T15:05:06.744813" level="INFO">Successfully initialized new page object and opened url: https://www.saucedemo.com</msg>
+<msg time="2026-05-15T15:05:06.744975" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>https://www.saucedemo.com</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2026-05-15T15:05:05.802990" elapsed="0.942356"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:05.057459" elapsed="1.688370"/>
+</kw>
+<kw name="Fill Login" owner="login_page">
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-05-15T15:05:06.751414" level="INFO">Fills the text 'standard_user' in the given field.</msg>
+<arg>id=user-name</arg>
+<arg>${user}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:06.747782" elapsed="0.097875"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-05-15T15:05:06.849122" level="INFO">Fills the text 'secret_sauce' in the given field.</msg>
+<arg>id=password</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:06.846431" elapsed="0.045375"/>
+</kw>
+<arg>standard_user</arg>
+<arg>secret_sauce</arg>
+<status status="PASS" start="2026-05-15T15:05:06.746435" elapsed="0.145707"/>
+</kw>
+<kw name="Click Login" owner="login_page">
+<kw name="Click" owner="Browser">
+<msg time="2026-05-15T15:05:06.894783" level="INFO">Clicks the element 'id=login-button'.</msg>
+<arg>id=login-button</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:06.893549" elapsed="0.209130"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser">
+<msg time="2026-05-15T15:05:07.393308" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-2.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-2.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<arg>fullPage=True</arg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2026-05-15T15:05:07.103144" elapsed="0.290382"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:06.892606" elapsed="0.501073"/>
+</kw>
+<kw name="Validate Login Success" owner="login_page">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-05-15T15:05:07.407358" level="INFO">Waited for Element with selector text=Products at state visible</msg>
+<arg>text=Products</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-05-15T15:05:07.394448" elapsed="0.013145"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:07.393913" elapsed="0.013856"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:05.056509" elapsed="2.351355"/>
+</kw>
+<msg time="2026-05-15T15:05:07.431957" level="INFO">Switching context to context=34a2f377-1b83-4c29-ae5b-1d829afdf247 in CURRENT</msg>
+<msg time="2026-05-15T15:05:07.442190" level="INFO">Successfully changed active context: context=34a2f377-1b83-4c29-ae5b-1d829afdf247</msg>
+<msg time="2026-05-15T15:05:07.460981" level="INFO">Successfully closed Context</msg>
+<status status="PASS" start="2026-05-15T15:05:05.043729" elapsed="2.364575"/>
+</test>
+<test id="s1-s3-t2" name="Invalid Login" line="8">
+<kw name="Login With Invalid User" owner="login_keywords">
+<kw name="Open Login Page" owner="login_page">
+<kw name="New Browser" owner="Browser">
+<msg time="2026-05-15T15:05:07.488523" level="INFO">Switching browser to browser=7fc39f64-d78a-4ce8-8667-22c9e16fb41a</msg>
+<msg time="2026-05-15T15:05:07.497208" level="INFO">Successfully changed active browser: browser=7fc39f64-d78a-4ce8-8667-22c9e16fb41a</msg>
+<msg time="2026-05-15T15:05:07.497511" level="INFO">Reusing existing browser with id: browser=7fc39f64-d78a-4ce8-8667-22c9e16fb41a</msg>
+<arg>chromium</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2026-05-15T15:05:07.486811" elapsed="0.010856"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2026-05-15T15:05:08.488604" level="INFO">Successfully initialized new page object and opened url: https://www.saucedemo.com</msg>
+<msg time="2026-05-15T15:05:08.488832" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>https://www.saucedemo.com</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2026-05-15T15:05:07.498601" elapsed="0.990726"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:07.485732" elapsed="1.004800"/>
+</kw>
+<kw name="Fill Login" owner="login_page">
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-05-15T15:05:08.508284" level="INFO">Fills the text 'invalid_user' in the given field.</msg>
+<arg>id=user-name</arg>
+<arg>${user}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:08.500950" elapsed="0.095008"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-05-15T15:05:08.597686" level="INFO">Fills the text 'wrong_password' in the given field.</msg>
+<arg>id=password</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:08.596399" elapsed="0.031452"/>
+</kw>
+<arg>invalid_user</arg>
+<arg>wrong_password</arg>
+<status status="PASS" start="2026-05-15T15:05:08.491685" elapsed="0.136394"/>
+</kw>
+<kw name="Click Login" owner="login_page">
+<kw name="Click" owner="Browser">
+<msg time="2026-05-15T15:05:08.630048" level="INFO">Clicks the element 'id=login-button'.</msg>
+<arg>id=login-button</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-05-15T15:05:08.629197" elapsed="0.067023"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser">
+<msg time="2026-05-15T15:05:08.801273" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-3.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-3.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<arg>fullPage=True</arg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2026-05-15T15:05:08.696686" elapsed="0.106325"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:08.628564" elapsed="0.175813"/>
+</kw>
+<kw name="Validate Login Error" owner="login_page">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-05-15T15:05:08.825316" level="INFO">Waited for Element with selector data-test=error at state visible</msg>
+<arg>data-test=error</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-05-15T15:05:08.808581" elapsed="0.018644"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:08.805452" elapsed="0.022211"/>
+</kw>
+<status status="PASS" start="2026-05-15T15:05:07.483387" elapsed="1.344484"/>
+</kw>
+<msg time="2026-05-15T15:05:08.863376" level="INFO">Switching context to context=51a9be8f-aeb3-46e1-b644-ac50e2a39eaf in CURRENT</msg>
+<msg time="2026-05-15T15:05:08.880702" level="INFO">Successfully changed active context: context=51a9be8f-aeb3-46e1-b644-ac50e2a39eaf</msg>
+<msg time="2026-05-15T15:05:08.913613" level="INFO">Successfully closed Context</msg>
+<status status="PASS" start="2026-05-15T15:05:07.464302" elapsed="1.364012"/>
+</test>
+<status status="PASS" start="2026-05-15T15:05:05.024451" elapsed="3.891164"/>
+</suite>
+<status status="PASS" start="2026-05-15T15:04:59.186970" elapsed="9.753249"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="5" fail="0" skip="0">Tests</stat>
+<stat name="Api" id="s1-s1" pass="2" fail="0" skip="0">Tests.Api</stat>
+<stat name="Create User Api" id="s1-s1-s1" pass="1" fail="0" skip="0">Tests.Api.Create User Api</stat>
+<stat name="Users Api" id="s1-s1-s2" pass="1" fail="0" skip="0">Tests.Api.Users Api</stat>
+<stat name="Checkout Test" id="s1-s2" pass="1" fail="0" skip="0">Tests.Checkout Test</stat>
+<stat name="Login Test" id="s1-s3" pass="2" fail="0" skip="0">Tests.Login Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
